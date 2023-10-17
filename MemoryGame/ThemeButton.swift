@@ -18,13 +18,14 @@ struct ThemeButtonView: View {
         Button(action: action) {
             VStack {
                 Image(systemName: icon)
-                Text(label).font(.caption)
+                    .font(.title2)
+                Text(label).font(.title3)
             }
         }.foregroundColor(color)
     }
 }
 
 #Preview {
-    ThemeButtonView(icon: "shuffle", label: "elo",
+    ThemeButtonView(icon: "shuffle.circle", label: "elo",
                     color: .green, action:{print("text")} )
 }

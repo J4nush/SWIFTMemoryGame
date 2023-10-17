@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var displayedCards = ["🤙", "👅", "🍑", "🍌", "🐱" ,"🐵"]
     
-    let themesIcons: [String] = ["smiley.fill", "shuffle", "pawprint.fill"]
+    let themesIcons: [String] = ["face.smiling", "shuffle.circle", "pawprint.circle"]
     let themeColors: [Color] = [.green, .red, .blue]
     
     @State private var currentTheme: [String] = ["🤙", "👅", "🍑", "🍌", "🐱", "🐵", "🤙", "👅", "🍑", "🍌", "🐱", "🐵"]
@@ -56,7 +56,7 @@ struct ContentView: View {
         VStack {
             Text("Memo").font(.largeTitle).padding()
             cardDisplay
-            HStack{
+            HStack(spacing: 55){
                 ForEach(themes.indices, id: \.self) { index in
                     ThemeButtonView(icon: themesIcons[index], label: "Motyw \(index + 1)", color: currentColor) {
                         self.currentTheme = self.themes[index]
@@ -73,7 +73,7 @@ struct ContentView: View {
     }
     var cardDisplay: some View{
         ScrollView{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))], content: {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))],spacing: 20, content: {
                 ForEach(0..<currentTheme.count, id: \.self){
                     index in
                     CardView(content: currentTheme[index], color: currentColor).aspectRatio(2/3, contentMode: .fit)
