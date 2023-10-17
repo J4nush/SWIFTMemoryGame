@@ -15,6 +15,7 @@
 		3FA11EAD2AD5AA35000F341B /* MemoryGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA11EAC2AD5AA35000F341B /* MemoryGameUITests.swift */; };
 		3FA11EAF2AD5AA35000F341B /* MemoryGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA11EAE2AD5AA35000F341B /* MemoryGameUITestsLaunchTests.swift */; };
 		3FA11EBE2AD5AA86000F341B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA11EBD2AD5AA86000F341B /* CardView.swift */; };
+		EC3812D72ADEACAE0094B3C0 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3812D62ADEACAE0094B3C0 /* ThemeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		3FA11EAC2AD5AA35000F341B /* MemoryGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameUITests.swift; sourceTree = "<group>"; };
 		3FA11EAE2AD5AA35000F341B /* MemoryGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FA11EBD2AD5AA86000F341B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EC3812D62ADEACAE0094B3C0 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				3FA11E952AD5AA35000F341B /* Assets.xcassets */,
 				3FA11E972AD5AA35000F341B /* Preview Content */,
 				3FA11EBD2AD5AA86000F341B /* CardView.swift */,
+				EC3812D62ADEACAE0094B3C0 /* ThemeButton.swift */,
 			);
 			path = MemoryGame;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				3FA11E942AD5AA34000F341B /* ContentView.swift in Sources */,
 				3FA11EBE2AD5AA86000F341B /* CardView.swift in Sources */,
 				3FA11E922AD5AA34000F341B /* MemoryGameApp.swift in Sources */,
+				EC3812D72ADEACAE0094B3C0 /* ThemeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

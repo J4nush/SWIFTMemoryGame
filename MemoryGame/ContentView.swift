@@ -8,55 +8,63 @@
 import SwiftUI
 
 struct ContentView: View {
-    let cardContents = ["🤙", "👅", "🍑", "🍌", "🐱" ,"🐵"]
-    @State private var displayedCards = ["🤙", "👅"]
+    @State private var displayedCards = ["🤙", "👅", "🍑", "🍌", "🐱" ,"🐵"]
     
-    func addCards(){
-        let currentIndex = displayedCards.count
-        if currentIndex < cardContents.count{
-            let endIndex = min(currentIndex+2, cardContents.count)
-            displayedCards.append(contentsOf: cardContents[currentIndex..<endIndex])
-        }
-       
+    let themesIcons: [String] = ["smiley.fill", "shuffle", "pawprint.fill"]
+    let themeColors: [Color] = [.green, .red, .blue]
+    
+    @State private var currentTheme: [String] = ["🤙", "👅", "🍑", "🍌", "🐱", "🐵", "🤙", "👅", "🍑", "🍌", "🐱", "🐵"]
+        let themes: [[String]] = [
+            ["🤙", "👅", "🍑", "🍌", "🐱", "🐵", "🤙", "👅", "🍑", "🍌", "🐱", "🐵"],
+            ["🌞", "🌙", "⭐", "🌈", "☁️", "🌦", "🌧", "⛈", "🌞", "🌙", "⭐", "🌈", "💧", "🌪️", "☄️", "❄️"],
+            ["🍎", "🍊", "🍋", "🍇", "🍎", "🍊", "🍋", "🍇", "🍉", "🍉", "🥝", "🥝", "🍍", "🍍"]
+        ]
+    
+    @State private var currentColor: Color = .green
+    
+    func shuffleCards() {
+        currentTheme.shuffle()
     }
     
-    func removeCards(){
-        if displayedCards.count > 2{
-            displayedCards.removeLast(2)
-        }
-    }
-    
-    func adjustCardNumber(by offset: Int)-> some View{
-        if offset > 0{
-            addCards()
-        }else if offset < 0{
-            removeCards()
-        }
-        return EmptyView()
-    }
+//    func addCards(){
+//        let currentIndex = displayedCards.count
+//        if currentIndex < cardContents.count{
+//            let endIndex = min(currentIndex+2, cardContents.count)
+//            displayedCards.append(contentsOf: cardContents[currentIndex..<endIndex])
+//        }
+//       
+//    }
+//    
+//    func removeCards(){
+//        if displayedCards.count > 2{
+//            displayedCards.removeLast(2)
+//        }
+//    }
+//    
+//    func adjustCardNumber(by offset: Int)-> some View{
+//        if offset > 0{
+//            addCards()
+//        }else if offset < 0{
+//            removeCards()
+//        }
+//        return EmptyView()
+//    }
     
     
     
     var body: some View {
         VStack {
-           
+            Text("Memo").font(.largeTitle).padding()
             cardDisplay
             HStack{
-                Button(action: {
-                    adjustCardNumber(by: -2)
-                }){
-                    Image(systemName: "minus.circle.fill")
-                        .resizable()
-                        .frame(width: 20, height: 20).padding()
-                }.disabled(displayedCards.count == 2).border(.blue)
-                Spacer()
-                Button(action: {
-                    adjustCardNumber(by: 2)
-                }){
-                    Image(systemName: "plus")
-                        .resizable()
-                        .frame(width: 20, height: 20).padding()
-                }.disabled(displayedCards.count == cardContents.count).border(.blue)
+                ForEach(themes.indices, id: \.self) { index in
+                    ThemeButtonView(icon: themesIcons[index], label: "Motyw \(index + 1)", color: currentColor) {
+                        self.currentTheme = self.themes[index]
+                        self.currentColor = self.themeColors[index]
+                        shuffleCards()
+                    }
+                }
+            
             }.padding()
         }
         
@@ -65,10 +73,11 @@ struct ContentView: View {
     }
     var cardDisplay: some View{
         ScrollView{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], content: {
-                ForEach(displayedCards, id: \.self){
-                    content in
-                    CardView(content: content)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))], content: {
+                ForEach(0..<currentTheme.count, id: \.self){
+                    index in
+                    CardView(content: currentTheme[index], color: currentColor).aspectRatio(2/3, contentMode: .fit)
+
                 }
             }).padding()
         }

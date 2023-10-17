@@ -11,19 +11,19 @@ import SwiftUI
 struct CardView: View {
     @State private var isFlipped: Bool = false
     var content: String
+    var color: Color
     
     var body: some View{
         Group{
                 RoundedRectangle(cornerRadius: 12)
                     .fill(.white)
-                    .frame(minWidth: 120, minHeight: 50)
                     .overlay(
                         Text(content).font(.largeTitle)
                     )
                     .overlay(RoundedRectangle(
                         cornerRadius: 12
-                    ).stroke(.blue, lineWidth: 2)
-                    ).overlay( RoundedRectangle(cornerRadius: 12).fill(.blue).opacity(isFlipped ? 0 : 1)
+                    ).stroke(color, lineWidth: 2)
+                    ).overlay( RoundedRectangle(cornerRadius: 12).fill(color).opacity(isFlipped ? 0 : 1)
                     )
         }.onTapGesture{
             isFlipped.toggle()
@@ -35,5 +35,5 @@ struct CardView: View {
 
 
 #Preview {
-    CardView(content: "🐱")
+    CardView(content: "🐱", color: .blue)
 }
