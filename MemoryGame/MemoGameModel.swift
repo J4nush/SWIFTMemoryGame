@@ -29,7 +29,6 @@ struct MemoGameModel<CardContent> where CardContent: Equatable {
                     indexOfTheOneAndOnlyFaceUpCard = chosenIndex
                 }
                 cards[chosenIndex].isFaceUp.toggle()
-                print(card)
             }
         }
 
@@ -43,38 +42,22 @@ struct MemoGameModel<CardContent> where CardContent: Equatable {
 
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         cards = []
-        for pairIndex in 0..<max(2, numberOfPairsOfCards) { // Zapewniamy minimum 2 pary kart
+        for pairIndex in 0..<max(2, numberOfPairsOfCards) {
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(content: content, id: pairIndex*2))
-            cards.append(Card(content: content, id: pairIndex*2+1))
+            cards.append(Card(content: content, id: String(pairIndex*2)))
+            cards.append(Card(content: content, id: String(pairIndex*2+1)))
         }
         shuffle()
     }
     
     
 
-    struct Card: Identifiable {
-//        var isFaceUp: Bool = false
-//        var isMatched: Bool = false
-//        let content: CardContent
-//        let id: Int
-        var isFaceUp: Bool = false {
-                    didSet {
-                        if isFaceUp {
-//                            startUsingBonusTime()
-                        } else {
-//                            stopUsingBonusTime()
-                        }
-                    }
-                }
-                var isMatched: Bool = false {
-                    didSet {
-//                        stopUsingBonusTime()
-                    }
-                }
-                let content: CardContent
-                let id: Int
-            }
+    struct Card: Identifiable, Equatable {
+        var isFaceUp: Bool = false
+        var isMatched: Bool = false
+        let content: CardContent
+        let id: String
+    }
     
 }
 
