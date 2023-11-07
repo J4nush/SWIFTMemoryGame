@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: MemoGameViewModel
     @State private var displayedCards = ["🤙", "👅", "🍑", "🍌", "🐱" ,"🐵"]
     
     let themesIcons: [String] = ["face.smiling", "shuffle.circle", "pawprint.circle"]
@@ -52,32 +53,59 @@ struct ContentView: View {
     
     
     
-    var body: some View {
-        VStack {
+//    var body: some View {
+//        VStack {
+//            Text("Memo").font(.largeTitle).padding()
+//            cardDisplay
+//            HStack(spacing: 55){
+//                ForEach(themes.indices, id: \.self) { index in
+//                    ThemeButtonView(icon: themesIcons[index], label: "Motyw \(index + 1)", color: currentColor) {
+//                        self.currentTheme = self.themes[index]
+//                        self.currentColor = self.themeColors[index]
+//                        shuffleCards()
+//                    }
+//                }
+//            
+//            }.padding()
+//        }
+//        
+//        
+//        
+//    }
+    
+    var body: some View{
+        VStack{
             Text("Memo").font(.largeTitle).padding()
             cardDisplay
+            Button("SHUFFLE"){
+                viewModel.shuffle()
+            }.font(.title3).padding()
             HStack(spacing: 55){
                 ForEach(themes.indices, id: \.self) { index in
-                    ThemeButtonView(icon: themesIcons[index], label: "Motyw \(index + 1)", color: currentColor) {
-                        self.currentTheme = self.themes[index]
-                        self.currentColor = self.themeColors[index]
+                    ThemeButtonView(icon: themesIcons[index], label: "Motyw \(index + 1)", color: viewModel.currentColor) {
+                        withAnimation(.easeInOut) {
+                        viewModel.currentThemeIndex = index
+                    }
                         shuffleCards()
                     }
+                    
                 }
-            
-            }.padding()
-        }
-        
-        
-        
+            }
+        }.padding()
     }
     var cardDisplay: some View{
         ScrollView{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))],spacing: 20, content: {
-                ForEach(0..<currentTheme.count, id: \.self){
-                    index in
-                    CardView(content: currentTheme[index], color: currentColor).aspectRatio(2/3, contentMode: .fit)
-
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 85))],spacing: 0, content: {
+                ForEach(viewModel.cards) { card in
+                    CardView(card: card, color: viewModel.currentColor)
+                        .aspectRatio(3/4, contentMode: .fit)
+                        .padding(1)
+                        .onTapGesture {
+                            withAnimation {
+                                print(card)
+                                viewModel.choose(card: card)
+                            }
+                        }
                 }
             }).padding()
         }
@@ -87,5 +115,9 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: MemoGameViewModel(themes: [
+        ["🤙", "👅", "🍑", "🍌", "🐱", "🐵", "🤙", "👅", "🍑", "🍌", "🐱", "🐵"],
+        ["🌞", "🌙", "⭐", "🌈", "☁️", "🌦", "🌧", "⛈", "🌞", "🌙", "⭐", "🌈", "💧", "🌪️", "☄️", "❄️"],
+        ["🍎", "🍊", "🍋", "🍇", "🍎", "🍊", "🍋", "🍇", "🍉", "🍉", "🥝", "🥝", "🍍", "🍍"]
+    ], themeColors: [.green, .red, .blue]))
 }

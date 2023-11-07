@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct MemoryGameApp: App {
+    @StateObject var viewModel = MemoGameViewModel(themes: [
+            ["🤙", "👅", "🍑", "🍌", "🐱", "🐵"],
+            ["🌞", "🌙", "⭐", "🌈", "☁️", "🌦", "🌧"],
+            ["🍎", "🍊", "🍋", "🍇"]
+        ], themeColors: [.green, .red, .blue])
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
         }
     }
 }
