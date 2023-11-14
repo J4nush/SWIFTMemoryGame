@@ -9,28 +9,34 @@ import Foundation
 
 struct MemoGameModel<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
-    private var indexOfTheOneAndOnlyFaceUpCard: Int?
+    private var _indexOfTheOneAndOnlyFaceUpCard: Int?
 
-        mutating func choose(_ card: Card) {
-            
-            if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
-               !cards[chosenIndex].isFaceUp,
-               !cards[chosenIndex].isMatched {
-                if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
-                    if cards[chosenIndex].content == cards[potentialMatchIndex].content {
-                        cards[chosenIndex].isMatched = true
-                        cards[potentialMatchIndex].isMatched = true
-                    }
-                    indexOfTheOneAndOnlyFaceUpCard = nil
-                } else {
-                    for index in cards.indices {
-                        cards[index].isFaceUp = false
-                    }
-                    indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+        var indexOfTheOneAndOnlyFaceUpCard: Int? {
+            get {
+                cards.indices.filter { cards[$0].isFaceUp }.oneAndOnly
+            }
+            set {
+                for index in cards.indices {
+                    cards[index].isFaceUp = (index == newValue)
                 }
-                cards[chosenIndex].isFaceUp.toggle()
+                _indexOfTheOneAndOnlyFaceUpCard = newValue
             }
         }
+    mutating func choose(_ card: Card) {
+        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
+           !cards[chosenIndex].isFaceUp,
+           !cards[chosenIndex].isMatched {
+            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+                    cards[chosenIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
+                }
+                cards[chosenIndex].isFaceUp = true
+            } else {
+                indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+            }
+        }
+    }
 
         mutating func shuffle() {
             for index in cards.indices {
@@ -61,3 +67,12 @@ struct MemoGameModel<CardContent> where CardContent: Equatable {
     
 }
 
+extension Array {
+        var oneAndOnly: Element? {
+            if count == 1 {
+                return first
+            } else {
+                return nil
+            }
+        }
+    }

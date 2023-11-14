@@ -11,7 +11,7 @@ struct ContentView: View {
     @ObservedObject var viewModel: MemoGameViewModel
     
     let themesIcons: [String] = ["face.smiling", "shuffle.circle", "pawprint.circle"]
-    let themeColors: [Color] = [.green, .red, .blue]
+    let themeColors: [Color] = [.green, .cyan, .pink]
     
     
     
@@ -74,10 +74,7 @@ struct ContentView: View {
 
 
 
+
 #Preview {
-    ContentView(viewModel: MemoGameViewModel(themes: [
-        ["🤙", "👅", "🍑", "🍌", "🐱", "🐵", "🤙", "👅", "🍑", "🍌", "🐱", "🐵"],
-        ["🌞", "🌙", "⭐", "🌈", "☁️", "🌦", "🌧", "⛈", "🌞", "🌙", "⭐", "🌈", "💧", "🌪️", "☄️", "❄️"],
-        ["🍎", "🍊", "🍋", "🍇", "🍎", "🍊", "🍋", "🍇", "🍉", "🍉", "🥝", "🥝", "🍍", "🍍"]
-    ], themeColors: [.green, .red, .blue]))
+    ContentView(viewModel: MemoGameViewModel())
 }

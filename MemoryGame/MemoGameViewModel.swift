@@ -10,8 +10,13 @@ import SwiftUI
 
 class MemoGameViewModel: ObservableObject {
     @Published private var model: MemoGameModel<String>
-    let themes: [[String]]
-    let themeColors: [Color]
+    var themes: [[String]] = [
+        ["🤙", "👅", "🍑", "🍌", "🐱", "🐵"],
+            ["🌞", "🌙", "⭐", "🌈", "☁️", "🌦", "🌧"],
+            ["🍎", "🍊", "🍋", "🍇", "🥑", "🫐", "🍓", "🥝", "🍏", "🍍", "🧄"]
+        ]
+    var themeColors: [Color] = [.green, .cyan, .pink]
+    
     @Published var currentThemeIndex = 0 {
             didSet {
                 resetGame()
@@ -31,15 +36,15 @@ class MemoGameViewModel: ObservableObject {
         model.cards
     }
 
-    init(themes: [[String]], themeColors: [Color]) {
-        self.themes = themes
-        self.themeColors = themeColors
+    init() {
+//        self.themes = themes
+//        self.themeColors = themeColors
         self.model = MemoGameViewModel.createMemoryGame(with: themes[0])
           
     }
     
     static func createMemoryGame(with theme: [String]) -> MemoGameModel<String> {
-            return MemoGameModel<String>(numberOfPairsOfCards: theme.count / 2) { pairIndex in
+            return MemoGameModel<String>(numberOfPairsOfCards: theme.count) { pairIndex in
                 theme[pairIndex]
             }
         }
