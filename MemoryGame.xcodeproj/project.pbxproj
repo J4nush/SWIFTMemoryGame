@@ -18,6 +18,9 @@
 		EC3812D72ADEACAE0094B3C0 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3812D62ADEACAE0094B3C0 /* ThemeButton.swift */; };
 		ECA2DA0F2AFA5C0000B7B184 /* MemoGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2DA0E2AFA5C0000B7B184 /* MemoGameModel.swift */; };
 		ECA2DA112AFA5D4500B7B184 /* MemoGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2DA102AFA5D4500B7B184 /* MemoGameViewModel.swift */; };
+		ECE9CD8A2B16075700BB5CBB /* CirclePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE9CD892B16075700BB5CBB /* CirclePart.swift */; };
+		ECE9CD8C2B1608AB00BB5CBB /* TransformIntoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE9CD8B2B1608AB00BB5CBB /* TransformIntoCard.swift */; };
+		ECE9CD902B163DC000BB5CBB /* FlyingNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE9CD8F2B163DC000BB5CBB /* FlyingNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		EC3812D62ADEACAE0094B3C0 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
 		ECA2DA0E2AFA5C0000B7B184 /* MemoGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoGameModel.swift; sourceTree = "<group>"; };
 		ECA2DA102AFA5D4500B7B184 /* MemoGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoGameViewModel.swift; sourceTree = "<group>"; };
+		ECE9CD892B16075700BB5CBB /* CirclePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePart.swift; sourceTree = "<group>"; };
+		ECE9CD8B2B1608AB00BB5CBB /* TransformIntoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformIntoCard.swift; sourceTree = "<group>"; };
+		ECE9CD8F2B163DC000BB5CBB /* FlyingNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,9 @@
 				EC3812D62ADEACAE0094B3C0 /* ThemeButton.swift */,
 				ECA2DA0E2AFA5C0000B7B184 /* MemoGameModel.swift */,
 				ECA2DA102AFA5D4500B7B184 /* MemoGameViewModel.swift */,
+				ECE9CD892B16075700BB5CBB /* CirclePart.swift */,
+				ECE9CD8B2B1608AB00BB5CBB /* TransformIntoCard.swift */,
+				ECE9CD8F2B163DC000BB5CBB /* FlyingNumber.swift */,
 			);
 			path = MemoryGame;
 			sourceTree = "<group>";
@@ -271,6 +280,9 @@
 			files = (
 				ECA2DA0F2AFA5C0000B7B184 /* MemoGameModel.swift in Sources */,
 				3FA11E942AD5AA34000F341B /* ContentView.swift in Sources */,
+				ECE9CD902B163DC000BB5CBB /* FlyingNumber.swift in Sources */,
+				ECE9CD8C2B1608AB00BB5CBB /* TransformIntoCard.swift in Sources */,
+				ECE9CD8A2B16075700BB5CBB /* CirclePart.swift in Sources */,
 				ECA2DA112AFA5D4500B7B184 /* MemoGameViewModel.swift in Sources */,
 				3FA11EBE2AD5AA86000F341B /* CardView.swift in Sources */,
 				3FA11E922AD5AA34000F341B /* MemoryGameApp.swift in Sources */,

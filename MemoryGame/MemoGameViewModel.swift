@@ -22,7 +22,9 @@ class MemoGameViewModel: ObservableObject {
                 resetGame()
             }
         }
-        
+    var score: Int {
+            model.score
+        }
         var currentTheme: [String] {
             themes[currentThemeIndex]
         }
